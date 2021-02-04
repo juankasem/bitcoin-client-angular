@@ -22,6 +22,10 @@ export class BlockchainService {
     return this.blockchainInstance.chain;
   }
 
+  addTransaction(trans){
+    this.blockchainInstance.addTransaction(trans);
+  }
+
   private generateWalletKeys(){
     const ec = new EC.ec('secp256k1');
     const key = ec.generateKeyPair();
