@@ -28,6 +28,8 @@ export class CreateTransactionComponent implements OnInit {
       this.blockchainService.addTransaction(this.newTx);
 
     } catch (error) {
+      alert(error);
+      
       return;
     }
    

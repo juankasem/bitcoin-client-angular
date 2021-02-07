@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BlockchainService } from 'src/app/services/blockchain.service';
 
 @Component({
   selector: 'app-block-view',
@@ -8,17 +9,26 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BlockViewComponent implements OnInit {
 
   @Input() public block;
+  @Input() public selectedBlock;
+  
+  private blocksInChain
 
-  constructor() { }
+  constructor(private blockchainService: BlockchainService) { 
+  this.blocksInChain = blockchainService.blockchainInstance.chain;
+  }
 
   ngOnInit(): void {
   }
+
+  hasBlockTransactions(): boolean{
+    return this.block.transactions.length > 0;
+  }
   
-  public isSelectedBlock(): boolean{
-    return true
+  isSelectedBlock(): boolean{
+    return this.block = this.selectedBlock;
   }
 
-  public getBlockNumber(): number{
-    return 1
+   getBlockNumber(): number{
+    return this.blocksInChain.indexOf(this.block) + 1;
   }
 }
