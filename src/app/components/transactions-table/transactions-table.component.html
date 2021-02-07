@@ -27,7 +27,7 @@
       <td class="text-truncate" style="max-width: 100px;">
           <a [routerLink]="['/wallet', tx.toAddress]">{{tx.toAddress}}</a>
 
-          <span class="text-muted" *ngIf="blockchainService.addressIsFromCurrentUser(tx.toAddress)">
+          <span class="text-muted" *ngIf="blockchainService.isAddressFromCurrentUser(tx.toAddress)">
             <br><small>(That's yours!)</small>
           </span>
       </td>
