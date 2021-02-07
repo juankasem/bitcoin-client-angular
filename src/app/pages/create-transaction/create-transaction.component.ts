@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlockchainService } from 'src/app/services/blockchain.service';
+import { BlockchainService, IWalletKey } from 'src/app/services/blockchain.service';
 import { Transaction } from 'bitcoin-clone-nodejs';
 import { Router } from '@angular/router';
 
@@ -11,14 +11,13 @@ import { Router } from '@angular/router';
 export class CreateTransactionComponent implements OnInit {
   
   public newTx = new Transaction();
-  public myWalletKey
+  public myWalletKey: IWalletKey;
  
   constructor(private blockchainService: BlockchainService, private router: Router) { 
     this.myWalletKey = blockchainService.walletKeys[0];
   }
 
   ngOnInit(): void {
-    this.newTx = new Transaction();
   }
 
   createTransaction(){
