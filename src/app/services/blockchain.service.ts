@@ -8,18 +8,12 @@ import EC from "elliptic";
 export class BlockchainService {
 
   public blockchainInstance = new Blockchain();
-  public walletKeys = [];
+  public walletKeys: Array<IWalletKey> = [];
 
   constructor() { 
     this.blockchainInstance.difficulty = 1;
     this.blockchainInstance.minePendingTransactions('my-wallet-address');
-
-
     this.generateWalletKeys();
-  }
-
-   getBlocks(){
-    return this.blockchainInstance.chain;
   }
 
   addTransaction(trans){
@@ -30,10 +24,13 @@ export class BlockchainService {
     return this.blockchainInstance.pendingTransactions
   }
 
+  isAddressFromCurrentUser(address): boolean {
+    return address == this.walletKeys[0].publicKey
+  }
+
   minePendingTransactions(){
     this.blockchainInstance.minePendingTransactions(this.walletKeys[0].publicKey);
   }
-
 
   private generateWalletKeys(){
     const ec = new EC.ec('secp256k1');
@@ -45,4 +42,10 @@ export class BlockchainService {
       privateKey: key.getPrivate('hex')
     });
   }
+}
+
+export interface IWalletKey {
+  keyObj: any;
+  publicKey: string;
+  privateKey: string;
 }
