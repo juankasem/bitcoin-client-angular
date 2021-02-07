@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlockchainService } from 'src/app/services/blockchain.service';
 import { Transaction } from 'bitcoin-clone-nodejs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-transaction',
@@ -9,11 +10,11 @@ import { Transaction } from 'bitcoin-clone-nodejs';
 })
 export class CreateTransactionComponent implements OnInit {
   
-  public newTx;
-  public walletKey
+  public newTx = new Transaction();
+  public myWalletKey
  
-  constructor(private blockchainService: BlockchainService) { 
-    this.walletKey = blockchainService.walletKeys[0];
+  constructor(private blockchainService: BlockchainService, private router: Router) { 
+    this.myWalletKey = blockchainService.walletKeys[0];
   }
 
   ngOnInit(): void {
@@ -21,11 +22,17 @@ export class CreateTransactionComponent implements OnInit {
   }
 
   createTransaction(){
-    this.newTx.fromAddress = this.walletKey.publicKey;
-    this.newTx.signTransaction(this.walletKey.keyObj);
+    this.newTx.fromAddress = this.myWalletKey.publicKey;
+    this.newTx.signTransaction(this.myWalletKey.keyObj);
+    
+    try {
+      this.blockchainService.addTransaction(this.newTx);
 
-    this.blockchainService.addTransaction(this.newTx);
-
+    } catch (error) {
+      return;
+    }
+   
+    this.router.navigate(['/new/transaction/pending', { addedTx: true }]);
     this.newTx = new Transaction();
   }
 }
