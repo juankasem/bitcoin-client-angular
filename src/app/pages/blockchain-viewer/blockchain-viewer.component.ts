@@ -19,8 +19,20 @@ export class BlockchainViewerComponent implements OnInit {
     this.selectedBlock = this.blocks[0];
   }
 
-  public showTransactions(block): void {
+   showTransactions(block): void {
     this.selectedBlock = block;
   }
+   
+   hasBlockAnyTransactions(block): boolean {
+     return block.transactions.length > 0;
+   }
 
+   isSelectedBlock(block): boolean {
+     return this.selectedBlock = block;
+   }
+   
+   getBlockNumber(block): number {
+     return this.blocks.indexOf(block) + 1;
+   }
+  
 }

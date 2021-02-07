@@ -5,4 +5,7 @@
     [transactions]="pendingTransactions"
     ></app-transactions-table>
     <button class="btn btn-primary" (click)="minePendingTransactions()">Start mining</button>
+    <div *ngIf="miningInProgress === true">
+        Minning in progress
+    </div>
 </div>
