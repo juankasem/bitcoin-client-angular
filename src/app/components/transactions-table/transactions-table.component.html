@@ -20,7 +20,7 @@
 
         <span *ngIf="tx.fromAddress === null">System</span>
 
-        <span class="text-muted" *ngIf="blockchainService.addressIsFromCurrentUser(tx.fromAddress)">
+        <span class="text-muted" *ngIf="blockchainService.isAddressFromCurrentUser(tx.fromAddress)">
           <br><small>(That's yours!)</small>
         </span>
       </td>

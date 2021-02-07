@@ -34,7 +34,7 @@ export class BlockchainService {
 
   private generateWalletKeys(){
     const ec = new EC.ec('secp256k1');
-    const key = ec.generateKeyPair();
+    const key = ec.genKeyPair();
 
     this.walletKeys.push({
       keyObj: key,
