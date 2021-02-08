@@ -20,7 +20,7 @@ export class CreateTransactionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createTransaction(){
+  createTransaction(): void{
     this.newTx.fromAddress = this.myWalletKey.publicKey;
     this.newTx.signTransaction(this.myWalletKey.keyObj);
     

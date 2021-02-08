@@ -27,7 +27,7 @@ export class PendingTransactionsComponent implements OnInit {
    }
   }
  
-  minePendingTransactions(){
+  minePendingTransactions(): void{
     this.miningInProgress = true;
     this.blockchainService.minePendingTransactions();
     this.miningInProgress = false;
