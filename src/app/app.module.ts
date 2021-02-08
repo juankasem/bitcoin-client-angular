@@ -10,6 +10,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { CreateTransactionComponent } from './pages/create-transaction/create-transaction.component';
 import { PendingTransactionsComponent } from './pages/pending-transactions/pending-transactions.component';
 import { FormsModule } from '@angular/forms';
+import { WalletBalanceComponent } from './pages/wallet-balance/wallet-balance.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     TransactionsTableComponent,
     SettingsComponent,
     CreateTransactionComponent,
-    PendingTransactionsComponent
+    PendingTransactionsComponent,
+    WalletBalanceComponent
   ],
   imports: [
     BrowserModule,
